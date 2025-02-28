@@ -22,12 +22,12 @@ const xScale = d3
 
 const yScale = d3
   .scaleLinear()
-  .domain([0, d3.max(data), (d) => d.value])
+  .domain([0, d3.max(data)])
   .range([height - margin, margin]);
 
 // Create the axes.
 const xAxis = d3.axisBottom(xScale).ticks(5);
-const yAxis = d3.axisLeft(yScale);
+const yAxis = d3.axisLeft(yScale).ticks(4);
 
 // Paint the axes.
 svg
@@ -35,7 +35,7 @@ svg
   .attr("transform", `translate(0,${height - margin})`)
   .call(xAxis);
 
-svg.append("g").attr("transform", `translate(${margin},0)`).call(xAxis);
+svg.append("g").attr("transform", `translate(${margin},0)`).call(yAxis);
 
 // Describe how the data is used to draw the line (I think)
 const line = d3
