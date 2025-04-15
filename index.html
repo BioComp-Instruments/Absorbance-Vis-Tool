@@ -3,14 +3,71 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Absorbance Visualizaiton</title>
-    <!-- <script src="scripts/chat.js" defer></script> -->
-    <script type="module" src="scripts/chat.js" defer></script>
+    <title>D3 Line Graph - Minimalist UI</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Link to the new CSS file -->
   </head>
   <body>
-    <div class="csv_manager">
-      <h4>Attach CSV's</h4>
-      <input type="file" id="csv_manager--input" accept=".csv"></input></div>
+    <div class="container">
+      <header>
+        <h1>Data Visualization</h1>
+        <p>Upload a CSV file to generate a line graph.</p>
+      </header>
+
+      <section id="upload-section" class="card">
+        <h2>Upload Data</h2>
+        <div id="csv_manager">
+          <!-- Keep original ID structure for JS -->
+          <label for="csv_manager--input" class="file-label"
+            >Choose CSV File</label
+          >
+          <input
+            type="file"
+            id="csv_manager--input"
+            accept=".csv, text/csv"
+            class="file-input"
+          />
+          <span id="file-name-display" class="file-name">No file chosen</span>
+        </div>
+        <p class="instructions">
+          <small>
+            Requirements: CSV needs at least 6 columns. Column 3 (index 2) is
+            used for X-axis, Column 4 (index 3) for Y-axis. The first data row
+            after the header is assumed to contain axis labels.
+          </small>
+        </p>
+      </section>
+
+      <section id="visualization-section" class="card">
+        <h2>Graph</h2>
+        <div id="visualization">
+          <!-- SVG will be appended here by D3 -->
+        </div>
+      </section>
+
+      <footer>
+        <p>© 2023 Your Name/Company</p>
+      </footer>
     </div>
+
+    <!-- Load D3 (adjust path if needed) -->
+    <!-- <script src="https://d3js.org/d3.v7.min.js"></script> -->
+    <!-- Load your compiled TypeScript -->
+    <script type="module" src="scripts/chat.js"></script>
+    <!-- Adjust path as needed -->
+    <script>
+      // Small script to update file name display
+      const fileInput = document.getElementById("csv_manager--input");
+      const fileNameDisplay = document.getElementById("file-name-display");
+      if (fileInput && fileNameDisplay) {
+        fileInput.addEventListener("change", function () {
+          if (this.files && this.files.length > 0) {
+            fileNameDisplay.textContent = this.files[0].name;
+          } else {
+            fileNameDisplay.textContent = "No file chosen";
+          }
+        });
+      }
+    </script>
   </body>
 </html>

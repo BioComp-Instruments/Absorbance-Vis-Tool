@@ -1,0 +1,225 @@
+/* --- Global Styles & Reset --- */
+:root {
+  --primary-color: #007bff; /* A subtle blue accent */
+  --text-color: #333;
+  --light-text-color: #666;
+  --bg-color: #f8f9fa; /* Very light grey background */
+  --card-bg-color: #ffffff;
+  --border-color: #dee2e6;
+  --hover-bg-color: #e9ecef;
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
+  --border-radius: 6px;
+  --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px; /* Base font size */
+}
+
+body {
+  font-family: var(--font-family);
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  padding: 20px;
+  display: flex;
+  justify-content: center; /* Center the main container */
+}
+
+.container {
+  max-width: 900px; /* Limit content width */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px; /* Space between sections */
+}
+
+/* --- Typography --- */
+h1,
+h2 {
+  margin-bottom: 0.75em;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+h1 {
+  font-size: 2rem;
+  color: var(--primary-color);
+  text-align: center; /* Center main title */
+}
+
+h2 {
+  font-size: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+small {
+  font-size: 0.85em;
+  color: var(--light-text-color);
+}
+
+/* --- Header & Footer --- */
+header {
+  text-align: center;
+  margin-bottom: 10px; /* Reduced margin below header text */
+}
+header p {
+  color: var(--light-text-color);
+  font-size: 1.1rem;
+}
+
+footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9em;
+  color: var(--light-text-color);
+}
+
+/* --- Card Style for Sections --- */
+.card {
+  background-color: var(--card-bg-color);
+  border-radius: var(--border-radius);
+  padding: 25px;
+  box-shadow: var(--box-shadow);
+  border: 1px solid var(--border-color);
+}
+
+/* --- Upload Section --- */
+#csv_manager {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Space between label, input, and file name */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  margin-bottom: 1em;
+}
+
+.file-label {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px 20px;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-weight: 500;
+}
+
+.file-label:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Hide the default file input visually but keep accessible */
+.file-input {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+/* Style the file name display area */
+.file-name {
+  font-style: italic;
+  color: var(--light-text-color);
+  background-color: var(--bg-color);
+  padding: 8px 12px;
+  border-radius: var(--border-radius);
+  border: 1px dashed var(--border-color);
+  flex-grow: 1; /* Allow it to take remaining space */
+  min-width: 150px; /* Ensure it has some base width */
+}
+
+.instructions {
+  margin-top: 15px;
+  background-color: #fdfdfe; /* Slightly different background for emphasis */
+  padding: 10px;
+  border-left: 3px solid var(--primary-color);
+}
+.instructions small {
+  line-height: 1.5;
+}
+
+/* --- Visualization Section --- */
+#visualization {
+  width: 100%;
+  min-height: 420px; /* Ensure space even before loading */
+  display: flex; /* Helps center SVG if needed */
+  justify-content: center;
+  align-items: center;
+}
+
+/* --- D3 SVG Styles (Keep consistent with minimalist theme) --- */
+#visualization svg {
+  /* SVG will have width/height set by JS */
+  display: block; /* Remove extra space below inline SVG */
+  margin: auto; /* Center if container is wider */
+}
+
+.tick line {
+  stroke: #e0e0e0; /* Lighter ticks */
+  stroke-opacity: 0.7;
+}
+
+.tick text {
+  fill: var(--light-text-color);
+  font-size: 11px; /* Slightly smaller axis text */
+}
+
+.domain {
+  stroke: #a0a0a0; /* Lighter axis lines */
+}
+
+.x-axis-label,
+.y-axis-label {
+  font-size: 13px;
+  fill: var(--text-color);
+  font-weight: 500;
+}
+
+.data-line {
+  fill: none;
+  stroke: var(--primary-color); /* Use accent color */
+  stroke-width: 2px; /* Slightly thicker line */
+  stroke-linejoin: round; /* Smoother joins */
+  stroke-linecap: round; /* Smoother ends */
+}
+
+/* --- Responsive Considerations (Optional Simple Example) --- */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+  .container {
+    gap: 20px;
+  }
+  h1 {
+    font-size: 1.8rem;
+  }
+  h2 {
+    font-size: 1.3rem;
+  }
+  .card {
+    padding: 15px;
+  }
+  #csv_manager {
+    flex-direction: column; /* Stack elements vertically */
+    align-items: flex-start;
+  }
+  .file-name {
+    width: 100%; /* Take full width when stacked */
+  }
+}
